@@ -10,8 +10,8 @@ import re
 import io
 
 api_id = 3048536
-api_hash = "d6b47c422a9818ab4e54241d15a33f09"
-session = "VirusTotalBot"
+api_hash = "##################################"
+session = "##################"
 
 client = TelegramClient(session, api_id, api_hash)
 client.start()
@@ -28,13 +28,12 @@ def main():
     # print("timer dosent not start")
 
 
-# 'x-apikey': '4e48f3628c3f9ccf1ebf44ac714bd71704243a469b00a0e14cfec3e2a65145b3',
 def check_ip():
     headers = {
-        'x-apikey': 'e12923396923694b1679496f24026334f922d98047788777f1c13223f6dc0d90',
+        'x-apikey': '###################################################',
     }
 
-    lastmsg = client.get_messages('shodanresponse_bot', 300)
+    lastmsg = client.get_messages('BOTNAME', 300)
     ip_addr_for_vtotal = []
     for i in lastmsg:
         ip_addr_list = re.findall("\d+.\d+.\d+.\d+", i.text)
@@ -126,7 +125,7 @@ def prntres(json_d, ip):
 
     send_IP = "**" + ip + "**"                                                                                          #BOLD TEXT IP
 
-    client.send_message("https://t.me/virtot", "IP" + ip + "\n \n " + report1 + "\n " + "AV Details: \n" + "\n" + str1)
+    client.send_message("LINK TO PUBLIK OR USERNAME OR PHONE", "IP" + ip + "\n \n " + report1 + "\n " + "AV Details: \n" + "\n" + str1)
 
     # client.send_message("https://t.me/virtot", dt_string + "\n \n" +"IP address: \n"+ send_IP + ": \n\n" +"Result: \n" + report1 + "\n")
     print("Scan done! Check Public")
