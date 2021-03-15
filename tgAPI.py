@@ -9,9 +9,9 @@ from datetime import datetime
 import re
 import io
 
-api_id = #####
-api_hash = "######################"
-session = "#############"
+api_id = 3048536
+api_hash = "d6b47c422a9818ab4e54241d15a33f09"
+session = "VirusTotalBot"
 
 client = TelegramClient(session, api_id, api_hash)
 client.start()
@@ -30,7 +30,7 @@ def main():
 
 def check_ip():
     headers = {
-        'x-apikey': '####################################',
+        'x-apikey': '4e48f3628c3f9ccf1ebf44ac714bd71704243a469b00a0e14cfec3e2a65145b3',
     }
 
     lastmsg = client.get_messages('shodanresponse_bot')
@@ -108,14 +108,14 @@ def prntres(json_d, ip):
     except IndexError:
         report1 = arr[0]
     # SEND FULL NUDES
-    #client.send_message("###############", get_last_msg() + "\n \n" + report1 +"\n"+ "AV Details: \n" + "\n" + str1)
+    #client.send_message("https://t.me/virtot", get_last_msg() + "\n \n" + report1 +"\n"+ "AV Details: \n" + "\n" + str1)
 
     # SEND SHORT
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
     send_IP = "**" + ip + "**"
-    client.send_message("#############", dt_string + "\n \n" +"IP address: \n"+ send_IP + ": \n\n" +"Result: \n" + report1 + "\n")
+    client.send_message("https://t.me/virtot", dt_string + "\n \n" +"IP address: \n"+ send_IP + ": \n\n" +"Result: \n" + report1 + "\n")
     print("Scan done! Check Public")
 
 
