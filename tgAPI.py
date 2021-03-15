@@ -23,7 +23,7 @@ def main():
         now = datetime.now()
         print("start at: ", now)
         check_ip()
-        time.sleep(2)
+        time.sleep(5)
 
     # print("timer dosent not start")
 
@@ -54,12 +54,30 @@ def check_ip():
     result_json = json.dumps(json_data, indent=5)  # делает норм вид жсона, чисто для вида
     tmp_arr = []
     root = json_data['data'][0]['attributes']
+    #root['last_analysis_stats'][i] in for == harmless, malicious ...
+    if root['last_analysis_stats']['malicious'] != 0:
+        print("malicious:"+str(root['last_analysis_stats']['malicious']))
+        prntres(json_data, ip)
+    if root['last_analysis_stats']['suspicious'] != 0:
+        print("suspicious:"+str(root['last_analysis_stats']['suspicious']))
+        prntres(json_data, ip)
+    else:
+        pass
+    """
     for i in root['last_analysis_stats']:
-        if root['last_analysis_stats'][i] != 0:
+        print(type(root['last_analysis_stats'][i]))
+        #print(root['last_analysis_stats'][i]['malicious'])
+        if root['last_analysis_stats']['malicious'] != 0 or root['last_analysis_stats'][i]['suspicious'] != 0:
             tmp = i + ":" + str(root['last_analysis_stats'][i])
             tmp_arr.append(tmp)
+        else:
+            pass
+    print(tmp_arr)
+
+
 
     prntres(json_data, ip)
+    """
 
 
 def prntres(json_d, ip):
@@ -90,7 +108,7 @@ def prntres(json_d, ip):
     except IndexError:
         report1 = arr[0]
     # SEND FULL NUDES
-    # client.send_message("https://t.me/virtot", get_last_msg() + "\n \n" + report1 +"\n"+ "AV Details: \n" + "\n" + str1)
+    #client.send_message("https://t.me/virtot", get_last_msg() + "\n \n" + report1 +"\n"+ "AV Details: \n" + "\n" + str1)
 
     # SEND SHORT
     now = datetime.now()
