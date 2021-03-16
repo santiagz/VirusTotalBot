@@ -10,7 +10,6 @@ import re
 import io
 import emoji
 
-
 api_id = 3048536
 api_hash = "d6b47c422a9818ab4e54241d15a33f09"
 session = "VirusTotalBot"
@@ -50,7 +49,7 @@ def check_ip():
                 ad.write(now + '\n')
 
     ip = ip_addr_for_vtotal
-    r = requests.get('https://www.virustotal.com/api/v3/search?query=' + ip, headers=headers)  # curl get запрос
+    r = requests.get('https://www.virustotal.com/api/v3/search?query=' + "185.62.188.30", headers=headers)  # curl get запрос
     json_data = r.json()  # делает вместо кода респонса,жсон ответ
 
     result_json = json.dumps(json_data, indent=5)  # делает норм вид жсона, чисто для вида
@@ -126,20 +125,21 @@ def prntres(json_d, ip):
         rate = int(temp_arr_rate[0]) + int(temp_arr_rate[1])
     except IndexError:
         rate = int(temp_arr_rate[0])
+
     rating_to_message = ""
-    
+
     if rate <= 2:
         rating_to_message += emoji.emojize(":star:")
-    if rate < 5 and rate > 2:
+    if rate <= 5 and rate > 2:
         rating_to_message += emoji.emojize(":star:") + emoji.emojize(":star:")
-    if rate < 7 and rate > 5:
+    if rate <= 7 and rate > 5:
         rating_to_message += emoji.emojize(":star:") + emoji.emojize(":star:") + emoji.emojize(":star:")
     if rate > 7:
         rating_to_message += emoji.emojize(":star:") + emoji.emojize(":star:") + emoji.emojize(":star:") + emoji.emojize(":star:") + emoji.emojize(":star:")
 
     now = datetime.now()
-    dt_string = emoji.emojize(":alarm_clock: ")+now.strftime("%d/%m/%Y %H:%M:%S")
-    ip_str = emoji.emojize(":black_flag: ")+ip
+    dt_string = emoji.emojize(":alarm_clock: ") + now.strftime("%d/%m/%Y %H:%M:%S")
+    ip_str = emoji.emojize(":black_flag: ") + ip
     mag = emoji.emojize(":man_detective: ")
 
 
