@@ -50,7 +50,7 @@ def check_ip():
                 ad.write(now + '\n')
 
     ip = ip_addr_for_vtotal
-    r = requests.get('https://www.virustotal.com/api/v3/search?query=' + "185.62.188.30", headers=headers)  # curl get запрос
+    r = requests.get('https://www.virustotal.com/api/v3/search?query=' + ip, headers=headers)  # curl get запрос
     json_data = r.json()  # делает вместо кода респонса,жсон ответ
 
     result_json = json.dumps(json_data, indent=5)  # делает норм вид жсона, чисто для вида
