@@ -127,7 +127,7 @@ def prntres(json_d, ip):
     except IndexError:
         rate = int(temp_arr_rate[0])
     rating_to_message = ""
-    rate = 10
+    
     if rate <= 2:
         rating_to_message += emoji.emojize(":star:")
     if rate < 5 and rate > 2:
