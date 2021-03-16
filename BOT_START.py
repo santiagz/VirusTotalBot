@@ -10,6 +10,7 @@ import re
 import io
 import emoji
 
+
 api_id = 3048536
 api_hash = "d6b47c422a9818ab4e54241d15a33f09"
 session = "VirusTotalBot"
@@ -100,50 +101,50 @@ def prntres(json_d, ip):
 
     arr = tmp_arr
     rep = ""
+    str_rating = ""
     #smiles
     for i in arr:
         if i.startswith("harmless"):
-            print("harm")
             rep += emoji.emojize(":hatching_chick: "+i+"\n")
+
         if i.startswith("malicious"):
             rep += emoji.emojize(":fire: "+i+"\n")
+            str_rating += i
         if i.startswith("suspicious"):
             rep += emoji.emojize(":japanese_goblin: "+i+"\n")
+            str_rating += i
         if i.startswith("undetected"):
             rep += emoji.emojize(":clown_face: "+i+"\n")
+
         else:
             pass
 
 
-    print(rep)
-    """
+    #get rating
+    temp_arr_rate = re.findall('\d+', str_rating)
     try:
-        report1 = emoji.emojize(":red_heart: "+arr[0] + '\n' +":red_heart: "+arr[1] + '\n' +":red_heart: "+ arr[2])
+        rate = int(temp_arr_rate[0]) + int(temp_arr_rate[1])
     except IndexError:
-        print("first eRrOr")
-        try:
-            report1 = arr[0] + '\n' + arr[1]
-        except IndexError:
-            try:
-                print("second eRrOR")
-                report1 = arr[0]
-            except IndexError:
-                pass
-    """
+        rate = int(temp_arr_rate[0])
+    rating_to_message = ""
+    rate = 10
+    if rate <= 2:
+        rating_to_message += emoji.emojize(":star:")
+    if rate < 5 and rate > 2:
+        rating_to_message += emoji.emojize(":star:") + emoji.emojize(":star:")
+    if rate < 7 and rate > 5:
+        rating_to_message += emoji.emojize(":star:") + emoji.emojize(":star:") + emoji.emojize(":star:")
+    if rate > 7:
+        rating_to_message += emoji.emojize(":star:") + emoji.emojize(":star:") + emoji.emojize(":star:") + emoji.emojize(":star:") + emoji.emojize(":star:")
 
     now = datetime.now()
     dt_string = emoji.emojize(":alarm_clock: ")+now.strftime("%d/%m/%Y %H:%M:%S")
     ip_str = emoji.emojize(":black_flag: ")+ip
     mag = emoji.emojize(":man_detective: ")
-    client.send_message("https://t.me/virtot",dt_string+"\n"+ ip_str+"\n \n"+ rep +"\n"+ mag+"AV Details: \n" + "\n" + str1)
 
 
-    # SEND FULL NUDES
-    # client.send_message("https://t.me/virtot", get_last_msg() + "\n \n" + report1 +"\n"+ "AV Details: \n" + "\n" + str1)
-
-    # SEND SHORT
-    #send_IP = "**" + ip + "**"
-    #client.send_message("https://t.me/virtot", dt_string + "\n \n" +"IP address: \n"+ send_IP + ": \n\n" +"Result: \n" + report1 + "\n")
+    client.send_message("https://t.me/virtot",dt_string+"\n \n"+ ip_str+"\n \n"+"Malware rating: \n" + rating_to_message +"\n \n"+ rep +"\n"+ mag+"**AV Details: **\n" + "\n" + str1)
+    print(rating_to_message)
     print("Scan done! Check Public")
 
 
