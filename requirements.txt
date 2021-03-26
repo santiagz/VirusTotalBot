@@ -272,7 +272,7 @@ pytsk3==20200117
 pytz==2021.1
 pywerview==0.2.0
 pyxdg==0.27
-PyYAML==5.3.1
+PyYAML==5.4
 qrcode==6.1
 Quamash==0.6.1
 rdflib==5.0.0
