@@ -196,7 +196,7 @@ pexpect==4.8.0
 pgspecial==1.11.10
 phonenumbers==8.12.1
 pickleshare==0.7.5
-Pillow==8.0.1
+Pillow==8.1.1
 plaster==1.0
 plaster-pastedeploy==0.5
 playsound==1.2.2
