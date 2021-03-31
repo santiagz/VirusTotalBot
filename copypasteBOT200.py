@@ -11,7 +11,7 @@ import io
 import emoji
 
 api_id = 3048536
-api_hash = "d6b47c422a9818ab4e54241d15a33f09"
+api_hash = "d6b47c422a9818ab4e54241d15aXXXXX"
 session = "VirusTotalBot"
 
 client = TelegramClient(session, api_id, api_hash)

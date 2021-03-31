@@ -9,10 +9,13 @@ from datetime import datetime
 import re
 import io
 import emoji
+from loguru import logger
 
 api_id = 3048536
-api_hash = "d6b47c422a9818ab4e54241d15a33f09"
+api_hash = "d6b47c422a9818ab4e54241d15aXXXXX"
 session = "VirusTotalBot"
+
+logger.add("info.json",format="{time} {level} {message}",level="INFO",rotation="5 MB",compression="zip",serialize=True)
 
 client = TelegramClient(session, api_id, api_hash)
 client.start()
@@ -31,7 +34,7 @@ def main():
 
 def check_ip():
     headers = {
-        'x-apikey': 'e12923396923694b1679496f24026334f922d98047788777f1c13223f6dc0d90',
+        'x-apikey': 'df2485ec4a53426d707804f1cc46d92c88e5662c295ba03fd1778bf7a29ae05f',
     }
 
     lastmsg = client.get_messages('shodanresponse_bot')
@@ -42,10 +45,11 @@ def check_ip():
     with open("newscan.txt") as f:
         now = ip_addr_for_vtotal
         if now in f.read():
-            print(f"IP arleady in file.({now})")
+            logger.info(f"IP arleady in file.({now})")
             return None
         else:
             with open("newscan.txt", "a") as ad:
+                logger.debug(f"New IP: ({now})")
                 ad.write(now + '\n')
 
     ip = ip_addr_for_vtotal
@@ -55,17 +59,17 @@ def check_ip():
     result_json = json.dumps(json_data, indent=5)  # делает норм вид жсона, чисто для вида
     tmp_arr = []
     root = json_data['data'][0]['attributes']
-    for i in root['last_analysis_stats']:
-        if root['last_analysis_stats']['malicious'] != 0:
-            print('malv:'+str(root['last_analysis_stats']['malicious']))
-            time.sleep(2)
-            prntres(json_data, ip)
-        if root['last_analysis_stats']['suspicious'] != 0:
-            print('malv:'+str(root['last_analysis_stats']['suspicious']))
-            time.sleep(2)
-            prntres(json_data, ip)
-        else:
-            pass
+    #for i in root['last_analysis_stats']:
+    if root['last_analysis_stats']['malicious'] != 0:
+        print('malv:'+str(root['last_analysis_stats']['malicious']))
+        time.sleep(2)
+        prntres(json_data, ip)
+    elif root['last_analysis_stats']['suspicious'] != 0:
+        print('susp:'+str(root['last_analysis_stats']['suspicious']))
+        time.sleep(2)
+        prntres(json_data, ip)
+    else:
+        pass
 
 
             #tmp = i + ":" + str(root['last_analysis_stats'][i])
@@ -143,7 +147,9 @@ def prntres(json_d, ip):
     mag = emoji.emojize(":man_detective: ")
 
 
-    client.send_message("https://t.me/virtot",dt_string+"\n \n"+ ip_str+"\n \n"+"Malware rating: \n" + rating_to_message +"\n \n"+ rep +"\n"+ mag+"**AV Details: **\n" + "\n" + str1)
+    with open("headers.txt") as fr:
+        scan_name = fr.readline()
+    client.send_message("https://t.me/virtot","Scan name: \n"+scan_name+'\n'+dt_string+"\n \n"+ ip_str+"\n \n"+"Malware rating: \n" + rating_to_message +"\n \n"+ rep +"\n"+ mag+"**AV Details: **\n" + "\n" + str1)
     print(rating_to_message)
     print("Scan done! Check Public")
 
