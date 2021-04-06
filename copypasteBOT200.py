@@ -10,9 +10,9 @@ import re
 import io
 import emoji
 
-api_id = 3048536
-api_hash = "d6b47c422a9818ab4e54241d15aXXXXX"
-session = "VirusTotalBot"
+api_id = 4124124
+api_hash = "sd4ctr52cv32"
+session = "NameOfSession"
 
 client = TelegramClient(session, api_id, api_hash)
 client.start()
@@ -31,7 +31,7 @@ def main():
 
 def check_ip():
     headers = {
-        'x-apikey': 'df2485ec4a53426d707804f1cc46d92c88e5662c295ba03fd1778bf7a29ae05f',
+        'x-apikey': 'c23r2xf234cr23c2',
     }
 
     lastmsg = client.get_messages('shodanresponse_bot',200)
