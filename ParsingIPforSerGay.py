@@ -9,9 +9,9 @@ from datetime import datetime
 import re
 import io
 
-api_id = 3048536
-api_hash = "d6b47c422a9818ab4e54241d15a33f09"
-session = "VirusTotalBot"
+api_id = 54245
+api_hash = "452452452"
+session = "NameOfSession"
 
 client = TelegramClient(session, api_id, api_hash)
 client.start()
@@ -28,10 +28,10 @@ def main():
     # print("timer dosent not start")
 
 
-# 'x-apikey': '4e48f3628c3f9ccf1ebf44ac714bd71704243a469b00a0e14cfec3e2a65145b3',
+# 'x-apikey': 'dfghfghdfg',
 def check_ip():
     headers = {
-        'x-apikey': 'e12923396923694b1679496f24026334f922d98047788777f1c13223f6dc0d90',
+        'x-apikey': 'hfghdgfh',
     }
 
     lastmsg = client.get_messages('shodanresponse_bot', 300)
