@@ -11,9 +11,9 @@ import io
 import emoji
 from loguru import logger
 
-api_id = 3048536
-api_hash = "d6b47c422a9818ab4e54241d15aXXXXX"
-session = "VirusTotalBot"
+api_id = 41241232
+api_hash = "3rfwrf23rf32"
+session = "NameOfSession"
 
 logger.add("info.json",format="{time} {level} {message}",level="INFO",rotation="5 MB",compression="zip",serialize=True)
 
@@ -34,7 +34,7 @@ def main():
 
 def check_ip():
     headers = {
-        'x-apikey': 'df2485ec4a53426d707804f1cc46d92c88e5662c295ba03fd1778bf7a29ae05f',
+        'x-apikey': 'qww2d23df32d1d312',
     }
 
     lastmsg = client.get_messages('shodanresponse_bot')
